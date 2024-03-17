@@ -1,1 +1,1 @@
-console.log("Script OK !!!");
+const openWindow = endPoint => { window.open("http://localhost:3000/test/" + endPoint, "_blank"); };
