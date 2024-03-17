@@ -20,6 +20,14 @@ h1{
     color: #333;
     border-color: #555;
 }
+.block{
+    display: block;
+    margin-bottom: 5px;
+}
+.inputUsersForm{
+    width: 90%;
+    margin-bottom: 10px;
+}
 
 #uiTitle{
     display: flex;
@@ -36,4 +44,10 @@ h1{
     justify-content: center;
     column-gap: 25px;
     justify-items: center;
+}
+#signupForm{
+    width: 300px;
+}
+#users-ui-container{
+    padding: 15px;
 }
