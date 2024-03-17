@@ -10,4 +10,4 @@ const commentSchema = mongoose.Schema({
 
 commentSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', commentSchema);
+module.exports = mongoose.model('Comment', commentSchema);

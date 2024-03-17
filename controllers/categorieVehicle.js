@@ -1,4 +1,4 @@
-const CategorieVehicle = require('../models/CategorieVehicle');
+const CategorieVehicle = require('../models/CategoryVehicle');
 
 exports.findAllCategorieVehicle = (req, res, next) => {
     CategorieVehicle.find().then(

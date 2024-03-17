@@ -11,4 +11,4 @@ const rentalSchema = mongoose.Schema({
 
 rentalSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', rentalSchema);
+module.exports = mongoose.model('Rental', rentalSchema);

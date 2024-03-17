@@ -12,4 +12,4 @@ const vehicleSchema = mongoose.Schema({
 
 vehicleSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', vehicleSchema);
+module.exports = mongoose.model('Vehicle', vehicleSchema);
