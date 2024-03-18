@@ -13,22 +13,39 @@
 
 <body>
     <div id="users-ui-container">
-        <h1>USERS TESTS</h1>
-        <form id="signupForm" class="forulaire">
-            <label for="email" class="block">Mail</label>
-            <input type="email" id="email" name="email" class="inputUsersForm">
-            <label for="pseudo" class="block">Pseudo</label>
-            <input type="text" id="pseudo" name="pseudo" class="inputUsersForm">
-            <label for="password" class="block">Password</label>
-            <input type="password" id="password" name="password" class="inputUsersForm">
-            <label for="role" class="block">Rôle</label>
-            <select id="role" name="role" class="inputUsersForm">
-                <option value="locataire" class="usersRolesOptions">Locataire</option>
-                <option value="prestataire" class="usersRolesOptions">Prestataire</option>
-                <option value="administrateur" class="usersRolesOptions">Administrateur</option>
-            </select>
-            <button type="submit">Envoyer</button>
-        </form>
+        <h1 class="center">USERS TESTS</h1>
+        <div class="formsSuperContainer">
+            <div class="formsContainer">
+                <div class="subFormsContainer">
+                    <h3>Signup</h3>
+                    <form id="signupForm" class="formulaire">
+                        <label for="email" class="block">Mail</label>
+                        <input type="email" id="email" name="email" class="inputForm">
+                        <label for="pseudo" class="block">Pseudo</label>
+                        <input type="text" id="pseudo" name="pseudo" class="inputForm">
+                        <label for="password" class="block">Password</label>
+                        <input type="password" id="password" name="password" class="inputForm">
+                        <label for="role" class="block">Rôle</label>
+                        <select id="role" name="role" class="inputForm">
+                            <option value="locataire" class="usersRolesOptions">Locataire</option>
+                            <option value="prestataire" class="usersRolesOptions">Prestataire</option>
+                            <option value="administrateur" class="usersRolesOptions">Administrateur</option>
+                        </select>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+                <div class="subFormsContainer">
+                    <h3>Login</h3>
+                    <form id="loginForm" class="formulaire">
+                        <label for="email" class="block">Mail</label>
+                        <input type="email" id="email" name="email" class="inputForm">
+                        <label for="password" class="block">Password</label>
+                        <input type="password" id="password" name="password" class="inputForm">
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

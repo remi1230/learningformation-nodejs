@@ -24,9 +24,24 @@ h1{
     display: block;
     margin-bottom: 5px;
 }
-.inputUsersForm{
+.inputForm{
     width: 90%;
     margin-bottom: 10px;
+}
+.formulaire{
+    width: 300px;
+}
+.center{
+    text-align: center;
+}
+.formsContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 112px;
+}
+.formsSuperContainer{
+    display: flex;
+    justify-content: center;
 }
 
 #uiTitle{
@@ -44,9 +59,6 @@ h1{
     justify-content: center;
     column-gap: 25px;
     justify-items: center;
-}
-#signupForm{
-    width: 300px;
 }
 #users-ui-container{
     padding: 15px;

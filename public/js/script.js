@@ -1,6 +1,9 @@
+let connectInfos = {};
+
 const openWindow = endPoint => { window.open("http://localhost:3000/test/" + endPoint, "_blank"); };
 
-document.getElementById('signupForm').addEventListener('submit', function(e) {
+function addListenerOnForm(formId, enPoint){
+  document.getElementById(formId).addEventListener('submit', function(e) {
     e.preventDefault();
   
     var formData = new FormData(this);
@@ -9,7 +12,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     formData.forEach((value, key) => { object[key] = value });
     var jsonData = JSON.stringify(object);
   
-    fetch('http://localhost:3000/signup', {
+    fetch('http://localhost:3000/' + enPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -17,6 +20,13 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
       body: jsonData
     })
     .then(response => response.json())
-    .then(data => console.log('Succès:', data))
+    .then(data => { connectInfos[formId] = data; console.log('Succès:', data)})
     .catch((error) => console.error('Erreur:', error));
-});
+  });
+}
+
+//******************************* USERS *******************************//
+addListenerOnForm('signupForm', 'signup');
+addListenerOnForm('loginForm', 'login');
+
+//******************************* VEHICLES *******************************//
