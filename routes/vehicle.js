@@ -9,7 +9,7 @@ router.get('/vehicles/all', auth, vehicleCtrl.findAllVehicle);
 router.get('/vehicles/category/:categoryVehicleId', auth, vehicleCtrl.findVehiclesByCategory);
 router.get('/vehicles/detail/:id', auth, vehicleCtrl.getVehicleDetails);
 router.post('/vehicles/add', auth, multer, vehicleCtrl.addVehicle);
-router.get('vehicles/update/:id', auth, multer, vehicleCtrl.updateVehicle);
-router.get('vehicles/delete/:id', auth, vehicleCtrl.deleteVehicle);
+router.put('/vehicles/update/:id', auth, multer, vehicleCtrl.updateVehicle);
+router.get('/vehicles/delete/:id', auth, vehicleCtrl.deleteVehicle);
 
 module.exports = router;

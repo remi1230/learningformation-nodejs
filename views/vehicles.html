@@ -14,28 +14,62 @@
 <body>
     <h1 class="center">VEHICLES TESTS</h1>
     <div class="formsSuperContainer">
-      <div class="formsContainer">
+      <div class="formsContainer vehicle">
           <div class="subFormsContainer">
-              <h3>Catégorie</h3>
+              <h3>Add Category</h3>
               <form id="createCategorieForm" class="formulaire">
                   <label for="libelle" class="block">Libellé</label>
                   <input type="text" id="libelle" name="libelle" class="inputForm">
-                  <button type="submit">Envoyer</button>
+                  <button type="submit">Send</button>
               </form>
           </div>
           <div class="subFormsContainer">
-              <h3>Véhicule</h3>
+              <h3>Add Vehicle</h3>
               <form id="createVehicleForm" class="formulaire">
                   <label for="libelle" class="block">Libellé</label>
                   <input type="text" id="libelle" name="libelle" class="inputForm">
                   <label for="description" class="block">Description</label>
                   <input type="text" id="description" name="description" class="inputForm">
-                  <label for="imageURL" class="block">URL de l'image</label>
-                  <input type="text" id="imageURL" name="imageURL" class="inputForm">
-                  <label for="categorie" class="block">Catégorie</label>
-                  <select id="categorie" name="categorie" class="inputForm">
+                  <label for="imageUrl" class="block">URL de l'image</label>
+                  <input type="text" id="imageUrl" name="imageUrl" class="inputForm">
+                  <label for="priceDay" class="block">Prix/Jour</label>
+                  <input type="number" id="priceDay" name="priceDay" class="inputForm" min="1" max="500">
+                  <label for="category" class="block">Catégorie</label>
+                  <select id="category" name="category" class="inputForm">
                   </select>
-                  <button type="submit">Envoyer</button>
+                  <button type="submit">Send</button>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Upd Vehicle</h3>
+              <form id="updateVehicleForm" class="formulaire">
+                  <label for="libelleToUpd" class="block">Libellé</label>
+                  <input type="text" id="libelleToUpd" name="libelle" class="inputForm">
+                  <label for="descriptionToUpd" class="block">Description</label>
+                  <input type="text" id="descriptionToUpd" name="description" class="inputForm">
+                  <label for="imageUrlToUpd" class="block">URL de l'image</label>
+                  <input type="text" id="imageUrlToUpd" name="imageUrl" class="inputForm">
+                  <label for="priceDayToUpd" class="block">Prix/Jour</label>
+                  <input type="number" id="priceDayToUpd" name="priceDay" class="inputForm" min="1" max="500">
+                  <label for="categoryToUpd" class="block">Catégorie</label>
+                  <select id="categoryToUpd" name="category" class="inputForm">
+                  </select>
+                  <button type="submit">Send</button>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Get Vehicles By Category</h3>
+              <form id="categoryForGetVegiclesForm" class="formulaire">
+                  <label for="categoryForGetVegicles" class="block">Catégorie</label>
+                  <select id="categoryForGetVegicles" name="category" class="inputForm" onchange="getVehiclesByCategory(this.value); "></select>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Get Vehicle Details</h3>
+              <form id="getVegicleDetailForm" class="formulaire">
+                  <label for="getVegicleDetail" class="block">Vehicle</label>
+                  <select id="getVegicleDetail" name="vehicleDetail" class="inputForm" onchange="getVehicleDetail(this.value); "></select>
+                  <button type="submit">Delete</button>
               </form>
           </div>
       </div>

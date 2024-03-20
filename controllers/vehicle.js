@@ -17,7 +17,7 @@ exports.findAllVehicle = (req, res, next) => {
  exports.findVehiclesByCategory = (req, res, next) => {
     const categoryVehicleId = req.params.categoryVehicleId;
 
-    Vehicle.find({ categoryVehicle: categoryVehicleId })
+    Vehicle.find({ category: categoryVehicleId })
         .populate('category', 'libelle')
         .then(vehicles => {
         if (!vehicles) {
@@ -34,7 +34,7 @@ exports.getVehicleDetails = (req, res, next) => {
     const vehicleId = req.params.id;
     
     Vehicle.findById(vehicleId)
-      .select('description')
+      //.select('description')
       .then(vehicle => {
         if (!vehicle) {
           return res.status(404).json({ message: 'Vehicle not found.' });
@@ -47,13 +47,13 @@ exports.getVehicleDetails = (req, res, next) => {
 };
 
 exports.addVehicle = (req, res, next) => {
-    const vehicleObject = JSON.parse(req.body.vehicle);
+    const vehicleObject = req.body;
     delete vehicleObject._id;
     const vehicle = new Vehicle({...vehicleObject, prestataire: req.auth.userId});
   
     vehicle.save()
     .then(() => { res.status(201).json({message: 'Véhicule enregistré !'})})
-    .catch(error => { res.status(400).json( { error })})
+    .catch(error => { res.status(400).json( { error, reqBody: req.body })})
  };
 
  exports.updateVehicle = (req, res, next) => {
@@ -84,12 +84,15 @@ exports.deleteVehicle = (req, res, next) => {
             if (vehicle.prestataire != req.auth.userId) {
                 res.status(401).json({message: 'Not authorized'});
             } else {
-                const filename = vehicle.imageUrl.split('/images/')[1];
+                /*const filename = vehicle.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
                     Vehicle.deleteOne({_id: req.params.id})
                         .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
                         .catch(error => res.status(401).json({ error }));
-                });
+                });*/
+                Vehicle.deleteOne({_id: req.params.id})
+                        .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
+                        .catch(error => res.status(401).json({ error }));
             }
         })
         .catch( error => {
