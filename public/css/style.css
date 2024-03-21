@@ -66,3 +66,8 @@ h1{
 #users-ui-container{
     padding: 15px;
 }
+#modelContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}

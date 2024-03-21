@@ -1,7 +1,7 @@
 const Rental = require('../models/Rental');
 const User   = require('../models/User');
 
-exports.findAllRental= (req, res, next) => {
+exports.findAllRental = (req, res, next) => {
   Rental.find()
   .populate('vehicle', 'libelle')
   .populate('renter', 'pseudo')
