@@ -1,7 +1,7 @@
 const Comment = require('../models/Comment');
 
 exports.findCommentsByVehicle = (req, res, next) => {
-    const veiculeId = req.params.veiculeId;
+    const veiculeId = req.params.vehicleId;
 
     Comment.find({ vehicle: veiculeId })
         .populate('vehicle', 'libelle')
@@ -18,11 +18,11 @@ exports.findCommentsByVehicle = (req, res, next) => {
 };
 
 exports.addComment = (req, res, next) => {
-    const commentObject = JSON.parse(req.body.comment);
+    const commentObject = req.body;
     delete commentObject._id;
-    const comment = new Comment({...commentObject, prestataire: req.auth.userId});
+    const comment = new Comment({...commentObject, author: req.auth.userId});
   
     comment.save()
-    .then(() => { res.status(201).json({message: 'Véhicule enregistré !'})})
+    .then(() => { res.status(201).json({message: 'Commentaire enregistré !'})})
     .catch(error => { res.status(400).json( { error })})
  };

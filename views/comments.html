@@ -13,6 +13,27 @@
 
 <body>
     <h1>COMMENTS TESTS</h1>
+    <div class="formsSuperContainer">
+      <div class="formsContainer">
+          <div class="subFormsContainer">
+              <h3>Add Comment</h3>
+              <form id="createCommentForm" class="formulaire">
+                  <label for="vehicle" class="block">Vehicle</label>
+                  <select id="vehicle" name="vehicle" class="inputForm"></select>
+                  <textarea id="comment" name="comment"  cols="30" rows="10"></textarea>
+                  <input type="date" id="commentDate" name="date" hidden=""/>
+                  <button type="submit">Send</button>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Get Coments By Vehicle</h3>
+              <form id="vehicleForGetCommentsForm" class="formulaire">
+                  <label for="vehicleForGetComments" class="block">Vehicle</label>
+                  <select id="vehicleForGetComments" name="vehicle" class="inputForm" onchange="getCommentsByVehicle(this.value); "></select>
+              </form>
+          </div>
+      </div>
+  </div>
 </body>
 
 </html>

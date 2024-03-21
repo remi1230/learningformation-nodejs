@@ -4,6 +4,14 @@ let glo = {
     categories: [],
     vehicleIdToUpd: 0,
   },
+  rentals: {
+    usersWithRentals: [],
+    rentals: [],
+    rentalIdToUpd: 0,
+  },
+  comments:{
+
+  }
 };
 
 //******************************* ÉVÈNEMENTS *******************************//
@@ -12,10 +20,21 @@ document.addEventListener("DOMContentLoaded", function() {
     getAllCategorieVehicle();
     getAllVehicle();
   }
+  else if(this.location.pathname === '/test/rentals'){
+    getAllVehicle([document.getElementById('vehicle'), document.getElementById('vehicleToUpd'), document.getElementById('vehicleForGetRentals')]);
+    getRenters();
+    getRentals();
+  }
+  else if(this.location.pathname === '/test/comments'){
+    document.getElementById('commentDate').value = dayDateToUSString();
+    getAllVehicle([document.getElementById('vehicle'), document.getElementById('vehicleForGetComments')]);
+  }
 });
 
 //******************************* FONCTIONS *******************************//
-const openWindow = endPoint => { window.open("http://localhost:3000/test/" + endPoint, "_blank"); };
+const openWindow        = endPoint => { window.open("http://localhost:3000/test/" + endPoint, "_blank"); };
+const formatRenterInfos = rental   => rental.renter.pseudo + ' - ' + rental.vehicle.libelle + ' - ' + rental.startDate + ' - ' + rental.endDate;
+const dayDateToUSString = () => { const d = (new Date()).toLocaleDateString(); return d.slice(-4) + '-' + d.slice(3,5) + '-' + d.slice(0,2) };
 
 function addListenerOnForm(formId, enPoint, method = 'POST'){
   let form = document.getElementById(formId);
@@ -32,7 +51,8 @@ function addListenerOnForm(formId, enPoint, method = 'POST'){
         formData.forEach((value, key) => { object[key] = value });
         var jsonData = JSON.stringify(object);
 
-        const param = formId !== ('updateVehicleForm' && 'getVegicleDetailForm') ? '' : ('/' + glo.vehicles.vehicleIdToUpd);
+        let param = formId !== ('updateVehicleForm' && 'getVegicleDetailForm') ? '' : ('/' + glo.vehicles.vehicleIdToUpd);
+        if(formId === 'updateRentalForm'){ param = '/' + glo.rentals.rentalIdToUpd; }
 
         fetch('http://localhost:3000/' + enPoint + param, {
           method: method,
@@ -91,7 +111,7 @@ function getAllCategorieVehicle(){
     }
 }
 
-function getAllVehicle(){
+function getAllVehicle(vehicleSelect = document.getElementById('getVegicleDetail')){
   const token = localStorage.getItem('loginForm-token');
   if(token){
     fetch(`http://localhost:3000/vehicles/all`, {
@@ -105,8 +125,6 @@ function getAllVehicle(){
           .then(data => {
             glo.vehicles.all = data;
 
-            let vehicleSelect = document.getElementById('getVegicleDetail');
-
             vehicleSelect.innerHTML = '';
             glo.vehicles.all.forEach(vehicle => {
               let option    = document.createElement('option');
@@ -115,7 +133,8 @@ function getAllVehicle(){
               option.value = vehicle._id;
               option.appendChild(optionTxt);
 
-              vehicleSelect.appendChild(option);
+              if(!Array.isArray(vehicleSelect)){ vehicleSelect.appendChild(option); }
+              else{ vehicleSelect.forEach(vehSelect => { vehSelect.appendChild(option.cloneNode(true)); }); }
             });
 
             console.log('Succès:', data);
@@ -152,6 +171,34 @@ function getVehicleDetail(vehicleId){
     }
 }
 
+function getRentalDetail(rentalId){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/rental/getRentalDetails/${rentalId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            glo.rentals.details = data;
+
+            glo.rentals.rentalIdToUpd = rentalId;
+
+            document.getElementById('rentalToUpd').value    = data._id;
+            document.getElementById('vehicleToUpd').value   = data.vehicle._id;
+            document.getElementById('startDateToUpd').value = data.startDate.slice(0, 10);
+            document.getElementById('endDateToUpd').value   = data.endDate.slice(0, 10);
+            document.getElementById('statusToUpd').value    = data.status;
+            
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
 function getVehiclesByCategory(categoryVehicleId){
   const token = localStorage.getItem('loginForm-token');
   if(token){
@@ -171,6 +218,132 @@ function getVehiclesByCategory(categoryVehicleId){
     }
 }
 
+function getRentalsByRenter(renterId){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/rental/findByRenter/${renterId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            glo.rentals.byRenter = data;
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
+function getRentalsByVehicle(vehicleId){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/rental/findByVehicle/${vehicleId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            glo.rentals.byVehicle = data;
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
+function getCommentsByVehicle(vehicleId){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/comment/${vehicleId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            glo.comments.byVehicle = data;
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
+function getRenters(){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/rental/findUsersWithRentals`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            if(Array.isArray(data)){
+              glo.rentals.usersWithRentals = data;
+
+              let rentalSelect = document.getElementById('rentalForGetRentals');
+              rentalSelect.innerHTML = '';
+              glo.rentals.usersWithRentals.forEach(renter => {
+                let option    = document.createElement('option');
+                let optionTxt = document.createTextNode(renter.pseudo);
+
+                option.value = renter._id;
+                option.appendChild(optionTxt);
+
+                rentalSelect.appendChild(option);
+              });
+            }
+
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
+function getRentals(){
+  const token = localStorage.getItem('loginForm-token');
+  if(token){
+    fetch(`http://localhost:3000/rental/findAllRental`, {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            if(Array.isArray(data)){
+              glo.rentals.rentals = data;
+
+              let rentalSelect = document.getElementById('rentalToUpd');
+              rentalSelect.innerHTML = '';
+              glo.rentals.rentals.forEach(rental => {
+                let option    = document.createElement('option');
+                let optionTxt = document.createTextNode(formatRenterInfos(rental));
+
+                option.value = rental._id;
+                option.appendChild(optionTxt);
+
+                rentalSelect.appendChild(option);
+              });
+            }
+
+            console.log('Succès:', data);
+          })
+          .catch((error) => console.error('Erreur:', error));
+    }
+}
+
+
 //******************************* USERS *******************************//
 addListenerOnForm('signupForm', 'signup');
 addListenerOnForm('loginForm', 'login');
@@ -179,4 +352,7 @@ addListenerOnForm('loginForm', 'login');
 addListenerOnForm('createCategorieForm', 'createCategorieVehicle');
 addListenerOnForm('createVehicleForm', 'vehicles/add');
 addListenerOnForm('updateVehicleForm', 'vehicles/update', 'PUT');
+addListenerOnForm('updateRentalForm', 'rental/update', 'PUT');
 addListenerOnForm('getVegicleDetailForm', 'vehicles/delete', 'GET');
+addListenerOnForm('createRentalForm', 'rental/add');
+addListenerOnForm('createCommentForm', 'comment/add');

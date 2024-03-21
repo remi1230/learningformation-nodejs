@@ -12,7 +12,65 @@
 </head>
 
 <body>
-    <h1>RENTALS TESTS</h1>
+    <h1 class="center">RENTALS TESTS</h1>
+    <div class="formsSuperContainer">
+      <div class="formsContainer">
+          <div class="subFormsContainer">
+              <h3>Add Rental</h3>
+              <form id="createRentalForm" class="formulaire">
+                  <label for="vehicle" class="block">Vehicle</label>
+                  <select id="vehicle" name="vehicle" class="inputForm"></select>
+                  <label for="startDate" class="block">Start date</label>
+                  <input type="date" id="startDate" name="startDate"/>
+                  <label for="endDate" class="block">End date</label>
+                  <input type="date" id="endDate" name="endDate"/>
+                  <label for="status" class="block">Status</label>
+                  <select id="status" name="status" class="inputForm">
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="declined">Declined</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                  <button type="submit">Send</button>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Upd Rental</h3>
+              <form id="updateRentalForm" class="formulaire">
+                <label for="rentalToUpd" class="block">Rental</label>
+                <select id="rentalToUpd" name="rental" class="inputForm" onchange="getRentalDetail(this.value); "></select>
+                <label for="vehicleToUpd" class="block">Vehicle</label>
+                <select id="vehicleToUpd" name="vehicle" class="inputForm" disabled=""></select>
+                <label for="startDateToUpd" class="block">Start date</label>
+                <input type="date" id="startDateToUpd" name="startDate" disabled=""/>
+                <label for="endDateToUpd" class="block">End date</label>
+                <input type="date" id="endDateToUpd" name="endDate" disabled=""/>
+                <label for="statusToUpd" class="block">Status</label>
+                <select id="statusToUpd" name="status" class="inputForm">
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="declined">Declined</option>
+                  <option value="completed">Completed</option>
+                </select>
+                <button type="submit">Send</button>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Get Rentals By Renter</h3>
+              <form id="renterForGetRentalsForm" class="formulaire">
+                  <label for="rentalForGetRentals" class="block">Renter</label>
+                  <select id="rentalForGetRentals" name="renter" class="inputForm" onchange="getRentalsByRenter(this.value); "></select>
+              </form>
+          </div>
+          <div class="subFormsContainer">
+              <h3>Get Rentals By Vehicle</h3>
+              <form id="vehicleForGetRentalsForm" class="formulaire">
+                  <label for="vehicleForGetRentals" class="block">Vehicle</label>
+                  <select id="vehicleForGetRentals" name="vehicle" class="inputForm" onchange="getRentalsByVehicle(this.value); "></select>
+              </form>
+          </div>
+      </div>
+  </div>
 </body>
 
 </html>
