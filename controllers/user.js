@@ -1,4 +1,5 @@
 const User   = require('../models/User');
+const Rental = require('../models/Rental');
 const bcrypt = require('bcrypt');
 const jwt    = require('jsonwebtoken');
 
@@ -32,7 +33,7 @@ exports.login = (req, res, next) => {
                     res.status(200).json({
                         userId: user._id,
                         token: jwt.sign(
-                            { userId: user._id },
+                            { userId: user._id, userRole: user.role },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
                         )
@@ -42,3 +43,16 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
  };
+
+ exports.findUsersWithRentals = (req, res, next) => {
+    Rental.distinct('renter')
+        .then(renterIds => {
+            if (renterIds.length === 0) {
+                return res.status(404).json({ message: "Aucun utilisateur n'a effectué de location." });
+            }
+            User.find({ _id: { $in: renterIds } })
+                .then(users => res.status(200).json(users))
+                .catch(error => res.status(500).json({ error }));
+        })
+        .catch(error => res.status(500).json({ error }));
+  };

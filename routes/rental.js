@@ -4,8 +4,7 @@ const router  = express.Router();
 const auth        = require('../middleware/auth');
 const rentalCtrl  = require('../controllers/rental');
 
-router.get('/rental/findAllRental', auth, rentalCtrl.findAllRental);
-router.get('/rental/findUsersWithRentals', auth, rentalCtrl.findUsersWithRentals);
+router.get('/rentals', auth, rentalCtrl.findAllRental);
 router.get('/rental/findByRenter/:renterId', auth, rentalCtrl.findRentalsByRenter);
 router.get('/rental/findByVehicle/:vehicleId', auth, rentalCtrl.findRentalsByVehicle);
 router.get('/rental/getRentalDetails/:id', auth, rentalCtrl.getRentalDetails);

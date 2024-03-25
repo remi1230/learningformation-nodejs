@@ -51,7 +51,7 @@ function addListenerOnForm(formId, enPoint, method = 'POST'){
         formData.forEach((value, key) => { object[key] = value });
         var jsonData = JSON.stringify(object);
 
-        let param = formId !== ('updateVehicleForm' && 'getVegicleDetailForm') ? '' : ('/' + glo.vehicles.vehicleIdToUpd);
+        let param = formId === ('updateVehicleForm' || 'getVegicleDetailForm') ? ('/' + glo.vehicles.vehicleIdToUpd) : '';
         if(formId === 'updateRentalForm'){ param = '/' + glo.rentals.rentalIdToUpd; }
 
         fetch('http://localhost:3000/' + enPoint + param, {
@@ -78,7 +78,7 @@ function addListenerOnForm(formId, enPoint, method = 'POST'){
 function getAllCategorieVehicle(){
   const token = localStorage.getItem('loginForm-token');
   if(token){
-    fetch('http://localhost:3000/findAllCategorieVehicle', {
+    fetch('http://localhost:3000/categorieVehicles', {
             method: 'GET',
             headers: {
               'Content-Type' : 'application/json',
@@ -114,7 +114,7 @@ function getAllCategorieVehicle(){
 function getAllVehicle(vehicleSelect = document.getElementById('getVegicleDetail')){
   const token = localStorage.getItem('loginForm-token');
   if(token){
-    fetch(`http://localhost:3000/vehicles/all`, {
+    fetch(`http://localhost:3000/vehicles`, {
             method: 'GET',
             headers: {
               'Content-Type' : 'application/json',
@@ -278,7 +278,7 @@ function getCommentsByVehicle(vehicleId){
 function getRenters(){
   const token = localStorage.getItem('loginForm-token');
   if(token){
-    fetch(`http://localhost:3000/rental/findUsersWithRentals`, {
+    fetch(`http://localhost:3000/users/withRentals`, {
             method: 'GET',
             headers: {
               'Content-Type' : 'application/json',
@@ -312,7 +312,7 @@ function getRenters(){
 function getRentals(){
   const token = localStorage.getItem('loginForm-token');
   if(token){
-    fetch(`http://localhost:3000/rental/findAllRental`, {
+    fetch(`http://localhost:3000/rentals`, {
             method: 'GET',
             headers: {
               'Content-Type' : 'application/json',
@@ -349,10 +349,10 @@ addListenerOnForm('signupForm', 'signup');
 addListenerOnForm('loginForm', 'login');
 
 //******************************* VEHICLES *******************************//
-addListenerOnForm('createCategorieForm', 'createCategorieVehicle');
+addListenerOnForm('createCategorieForm', 'categorieVehicle/add');
 addListenerOnForm('createVehicleForm', 'vehicles/add');
 addListenerOnForm('updateVehicleForm', 'vehicles/update', 'PUT');
 addListenerOnForm('updateRentalForm', 'rental/update', 'PUT');
-addListenerOnForm('getVegicleDetailForm', 'vehicles/delete', 'GET');
+addListenerOnForm('getVegicleDetailForm', 'vehicles/delete', 'DELETE');
 addListenerOnForm('createRentalForm', 'rental/add');
 addListenerOnForm('createCommentForm', 'comment/add');

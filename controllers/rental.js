@@ -1,5 +1,4 @@
 const Rental = require('../models/Rental');
-const User   = require('../models/User');
 
 exports.findAllRental = (req, res, next) => {
   Rental.find()
@@ -35,19 +34,6 @@ exports.getRentalDetails = (req, res, next) => {
     });
 };
 
-exports.findUsersWithRentals = (req, res, next) => {
-  Rental.distinct('renter')
-      .then(renterIds => {
-          if (renterIds.length === 0) {
-              return res.status(404).json({ message: "Aucun utilisateur n'a effectué de location." });
-          }
-          User.find({ _id: { $in: renterIds } })
-              .then(users => res.status(200).json(users))
-              .catch(error => res.status(500).json({ error }));
-      })
-      .catch(error => res.status(500).json({ error }));
-};
-
 exports.findRentalsByRenter = (req, res, next) => {
     const renterId = req.params.renterId;
 
@@ -56,7 +42,7 @@ exports.findRentalsByRenter = (req, res, next) => {
         .populate('renter', 'pseudo')
         .then(rentals => {
         if (!rentals) {
-            return res.status(404).json({ message: 'Aucun véhicule pour cet utilisateur.' });
+            return res.status(404).json({ message: 'No rental for this renter.' });
         }
         res.status(200).json(rentals);
         })
@@ -73,7 +59,7 @@ exports.findRentalsByRenter = (req, res, next) => {
         .populate('renter', 'pseudo')
         .then(rentals => {
         if (!rentals) {
-            return res.status(404).json({ message: 'Aucun véhicule dans cette catégorie.' });
+            return res.status(404).json({ message: 'No rental for this vehicle.' });
         }
         res.status(200).json(rentals);
         })
@@ -88,7 +74,7 @@ exports.addRental = (req, res, next) => {
     const rental = new Rental({...rentalObject, renter: req.auth.userId});
   
     rental.save()
-    .then(() => { res.status(201).json({message: 'Véhicule enregistré !'})})
+    .then(() => { res.status(201).json({message: 'Rental saved !'})})
     .catch(error => { res.status(400).json( { error })})
  };
 

@@ -8,7 +8,7 @@ exports.findCommentsByVehicle = (req, res, next) => {
         .populate('author', 'pseudo')
         .then(comments => {
         if (!comments) {
-            return res.status(404).json({ message: 'Aucun commentaire pour ce véhicule.' });
+            return res.status(404).json({ message: 'No Comment for this vehicle.' });
         }
         res.status(200).json(comments);
         })
@@ -23,6 +23,6 @@ exports.addComment = (req, res, next) => {
     const comment = new Comment({...commentObject, author: req.auth.userId});
   
     comment.save()
-    .then(() => { res.status(201).json({message: 'Commentaire enregistré !'})})
+    .then(() => { res.status(201).json({message: 'Comment saved !'})})
     .catch(error => { res.status(400).json( { error })})
  };

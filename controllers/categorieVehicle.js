@@ -3,6 +3,7 @@ const CategorieVehicle = require('../models/CategoryVehicle');
 exports.findAllCategorieVehicle = (req, res, next) => {
     CategorieVehicle.find().then(
     (categorieVehicles) => {
+        res.set({'Cache-Control': 'public, max-age=60000'});
         res.status(200).json(categorieVehicles);
     }
     ).catch(
@@ -15,8 +16,6 @@ exports.findAllCategorieVehicle = (req, res, next) => {
  };
 
 exports.createCategorieVehicle = (req, res, next) => {
-    //const categorieVehicleObject = JSON.parse(req.body.categorieVehicle);
-    //delete categorieVehicleObject._id;
     const libelle = req.body.libelle;
     const categorieVehicle = new CategorieVehicle({libelle: libelle});
   

@@ -3,6 +3,7 @@ const Vehicle = require('../models/Vehicle');
 exports.findAllVehicle = (req, res, next) => {
     Vehicle.find().then(
     (vehicles) => {
+        res.set({'Cache-Control': 'public, max-age=60000'});
         res.status(200).json(vehicles);
     }
     ).catch(
@@ -23,6 +24,7 @@ exports.findAllVehicle = (req, res, next) => {
         if (!vehicles) {
             return res.status(404).json({ message: 'Aucun véhicule dans cette catégorie.' });
         }
+        res.set({'Cache-Control': 'public, max-age=60000'});
         res.status(200).json(vehicles);
         })
         .catch(error => {
@@ -39,6 +41,7 @@ exports.getVehicleDetails = (req, res, next) => {
         if (!vehicle) {
           return res.status(404).json({ message: 'Vehicle not found.' });
         }
+        res.set({'Cache-Control': 'public, max-age=60000'});
         res.status(200).json(vehicle);
       })
       .catch(error => {
@@ -50,9 +53,11 @@ exports.addVehicle = (req, res, next) => {
     const vehicleObject = req.body;
     delete vehicleObject._id;
     const vehicle = new Vehicle({...vehicleObject, prestataire: req.auth.userId});
+
+    if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to add vehicle!" })};
   
     vehicle.save()
-    .then(() => { res.status(201).json({message: 'Véhicule enregistré !'})})
+    .then(() => { res.status(201).json({message: 'Véhicule saved !'})})
     .catch(error => { res.status(400).json( { error, reqBody: req.body })})
  };
 
@@ -66,10 +71,10 @@ exports.addVehicle = (req, res, next) => {
     Vehicle.findOne({_id: req.params.id})
         .then((vehicle) => {
             if (vehicle.prestataire != req.auth.userId) {
-                res.status(401).json({ message : 'Not authorized'});
+                res.status(401).json({ message : 'Not authorized', vehiclePrestataire: vehicle.prestataire, userConnectedId: req.auth.userId});
             } else {
                 Vehicle.updateOne({ _id: req.params.id}, { ...vehicleObject, _id: req.params.id})
-                .then(() => res.status(200).json({message : 'Véhicule modifié!'}))
+                .then(() => res.status(200).json({message : 'Véhicule updated!'}))
                 .catch(error => res.status(401).json({ error }));
             }
         })
@@ -91,7 +96,7 @@ exports.deleteVehicle = (req, res, next) => {
                         .catch(error => res.status(401).json({ error }));
                 });*/
                 Vehicle.deleteOne({_id: req.params.id})
-                        .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
+                        .then(() => { res.status(200).json({message: 'Vehicle deleted !'})})
                         .catch(error => res.status(401).json({ error }));
             }
         })
