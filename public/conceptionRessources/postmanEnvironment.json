@@ -1,0 +1,63 @@
+{
+	"id": "1cf39d76-ed09-45d0-92fe-24f057ed8338",
+	"name": "LearningFormation",
+	"values": [
+		{
+			"key": "authToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZkM2ZiMWRiMTEwMzQ3OGM5MjBmNDgiLCJ1c2VyUm9sZSI6InByZXN0YXRhaXJlIiwiaWF0IjoxNzExMzYxMjkxLCJleHAiOjE3MTE0NDc2OTF9.2O_Dz-tm3KhK_12ZBVN-h-GpXfuLWyinHxchs9ca9LU",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "vehicleId",
+			"value": "65fb0ab5cff05c379e704d74",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "vehicleIdToDelete",
+			"value": "66014bf73a933f413d52742b",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "renterId",
+			"value": "65f721785d103ec807ec0840",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "rentalId",
+			"value": "65fc104bfd9f2725eb0541c6",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "userLocataireEmail",
+			"value": "julien@yahoo.fr",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "userPrestataireEmail",
+			"value": "rem@yahoo.fr",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "userMDP",
+			"value": "azertyui",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "categoryVehicleId",
+			"value": "65f9c47fddc4ca20dced916e",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-03-26T13:19:24.073Z",
+	"_postman_exported_using": "Postman/10.24.7"
+}

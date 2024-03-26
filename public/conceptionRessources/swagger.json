@@ -1,0 +1,1177 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "home-iot-api",
+    "description": "The API for learning formation NodeJS project",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/REMITAFFOREAU_1/LearningFormation/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Inscription d'un nouvel utilisateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Inscription d'un nouvel utilisateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/withRentals": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get users with rental",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categorieVehicles": {
+      "get": {
+        "tags": [
+          "CategorieVehicle"
+        ],
+        "summary": "Get all vehicle categories",
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryVehicle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categorieVehicle/add": {
+      "post": {
+        "tags": [
+          "CategorieVehicle"
+        ],
+        "summary": "Add new vehicle category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryVehicle"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201_1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Get all vehicles",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/category/{categoryVehicleId}": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Get vehicles by category",
+        "operationId": "findVehiclesByCategory",
+        "parameters": [
+          {
+            "name": "categoryVehicleId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/detail/{id}": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Get vehicle details",
+        "operationId": "getVehicleDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_2"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/add": {
+      "post": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Add new vehicle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicle"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201_2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/update/{id}": {
+      "put": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Update a vehicle",
+        "operationId": "updateVehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicle"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Delete a vehicle",
+        "operationId": "deleteVehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_401_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rentals": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Get all rental",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/findByRenter/{renterId}": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Get rentals by renter",
+        "operationId": "findRentalsByRenter",
+        "parameters": [
+          {
+            "name": "renterId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/findByVehicle/{vehicleId}": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Get rentals by vehicle",
+        "operationId": "findRentalsByVehicle",
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/getRentalDetails/{id}": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Get rental detail",
+        "operationId": "getRentalDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_3"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/update/{id}": {
+      "put": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Update rental status",
+        "operationId": "updateRentalStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rental"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_4"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/add": {
+      "post": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Add new rental",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rental"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201_3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/{vehicleId}": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Get comments for a vehicle",
+        "operationId": "findCommentsByVehicle",
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_5"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/add": {
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Add new copment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Comment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201_4"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "r@yahoo.fr"
+          },
+          "pseudo": {
+            "type": "string",
+            "example": "coco"
+          },
+          "password": {
+            "type": "string",
+            "format": "hash",
+            "example": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          },
+          "role": {
+            "type": "string",
+            "example": "prestataire"
+          }
+        }
+      },
+      "CategoryVehicle": {
+        "type": "object",
+        "properties": {
+          "libelle": {
+            "type": "string",
+            "example": "Automobile"
+          }
+        }
+      },
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "libelle": {
+            "type": "string",
+            "example": "Renault Mégane"
+          },
+          "description": {
+            "type": "string",
+            "example": "Berling rouge de grand standing"
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "http://1230.fr"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryVehicle"
+          },
+          "priceDay": {
+            "type": "integer",
+            "format": "int32",
+            "example": 12
+          },
+          "prestataire": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "Rental": {
+        "type": "object",
+        "properties": {
+          "vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          },
+          "renter": {
+            "$ref": "#/components/schemas/User"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-03-12"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-03-12"
+          },
+          "status": {
+            "type": "string",
+            "example": "pending"
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          },
+          "author": {
+            "$ref": "#/components/schemas/User"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Très bonne voiture !"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-03-12"
+          }
+        }
+      },
+      "inline_response_201": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "User saved"
+          }
+        }
+      },
+      "inline_response_400": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "login_body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "string",
+            "example": "oid5fu65gdf4gu5dfo8i"
+          },
+          "token": {
+            "type": "string",
+            "example": "df65h43d54h3df24h-54df354h54"
+          }
+        }
+      },
+      "inline_response_401": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "User not found or wrong password !"
+          }
+        }
+      },
+      "inline_response_404": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "No users have made a rental."
+          }
+        }
+      },
+      "inline_response_400_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Missing or invalid authentication token"
+          }
+        }
+      },
+      "inline_response_201_1": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Vehicle category saved !"
+          }
+        }
+      },
+      "inline_response_404_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "No vehicle in this category."
+          }
+        }
+      },
+      "inline_response_404_2": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Vehicle not found.."
+          }
+        }
+      },
+      "inline_response_201_2": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Vehicle saved!"
+          }
+        }
+      },
+      "inline_response_400_2": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Missing or invalid authentication token."
+          }
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Véhicle updated !"
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Vehicle deleted !"
+          }
+        }
+      },
+      "inline_response_401_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Missing or invalid authentication token or prestataire is not the user."
+          }
+        }
+      },
+      "inline_response_404_3": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Vehicle not found."
+          }
+        }
+      },
+      "inline_response_404_4": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Rental not found."
+          }
+        }
+      },
+      "inline_response_201_3": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Rental saved!"
+          }
+        }
+      },
+      "inline_response_404_5": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "No Comment for this vehicle."
+          }
+        }
+      },
+      "inline_response_201_4": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Comment saved!"
+          }
+        }
+      }
+    }
+  }
+}
