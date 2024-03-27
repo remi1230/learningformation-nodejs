@@ -1,7 +1,7 @@
 # Learning Formation NodeJS Projet
 ## Installation
 ### Récupérer le projet depuis le dépôt distant
-### npm install
+### Exécuter npm install
 
 ## Détail du projet:
 Créer d'un web service pour location de véhicules Node.js et MongoDB
