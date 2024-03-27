@@ -19,6 +19,8 @@ const Rental = require('../models/Rental');
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
 exports.findAllRental = (req, res, next) => {
+  if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to get rentals!" })};
+
   Rental.find()
   .populate('vehicle', 'libelle')
   .populate('renter', 'pseudo')
@@ -44,6 +46,8 @@ exports.findAllRental = (req, res, next) => {
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
 exports.getRentalDetails = (req, res, next) => {
+  if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to get a rental detail!" })};
+
   const rentalId = req.params.id;
   
   Rental.findById(rentalId)
@@ -96,6 +100,8 @@ exports.findRentalsByRenter = (req, res, next) => {
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
  exports.findRentalsByVehicle = (req, res, next) => {
+    if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to get rentals!" })};
+
     const vehicleId = req.params.vehicleId;
 
     Rental.find({ vehicle: vehicleId })
@@ -140,17 +146,24 @@ exports.addRental = (req, res, next) => {
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
  exports.updateRentalStatus = (req, res, next) => {
-    const rentalId  = req.params.id;
-    const newStatus = req.body.status;
-    
-    Rental.findByIdAndUpdate(rentalId, { $set: { status: newStatus } }, { new: true })
-      .then(rental => {
-        if (!rental) {
-          return res.status(404).json({ message: 'Rental not found.' });
-        }
-        res.status(200).json(rental);
-      })
-      .catch(error => {
-        res.status(500).json({ error: error });
-      });
+  if(req.auth.userRole !== 'prestataire') { 
+      return res.status(400).json({ error: "You must be prestataire to get rentals!" });
+  }
+
+  const rentalId  = req.params.id;
+  const newStatus = req.body.status;
+  
+  Rental.findByIdAndUpdate(rentalId, { $set: { status: newStatus } }, { new: true })
+    .then(rental => {
+      if (!rental) {
+        return res.status(404).json({ message: 'Rental not found.' });
+      }
+      if (rental.vehicle.prestataire != req.auth.userId) {
+        return res.status(401).json({ message: 'Not authorized', vehiclePrestataire: rental.vehicle.prestataire, userConnectedId: req.auth.userId});
+      } 
+      return res.status(200).json(rental);
+    })
+    .catch(error => {
+      return res.status(500).json({ error: error });
+    });
 };

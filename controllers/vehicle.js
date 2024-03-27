@@ -149,12 +149,6 @@ exports.deleteVehicle = (req, res, next) => {
             if (vehicle.prestataire != req.auth.userId) {
                 res.status(401).json({message: 'Not authorized'});
             } else {
-                /*const filename = vehicle.imageUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
-                    Vehicle.deleteOne({_id: req.params.id})
-                        .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                        .catch(error => res.status(401).json({ error }));
-                });*/
                 Vehicle.deleteOne({_id: req.params.id})
                         .then(() => { res.status(200).json({message: 'Vehicle deleted !'})})
                         .catch(error => res.status(401).json({ error }));

@@ -45,6 +45,8 @@ exports.findAllCategorieVehicle = (req, res, next) => {
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
 exports.createCategorieVehicle = (req, res, next) => {
+    if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to add vehicle category!" })};
+
     const libelle = req.body.libelle;
     const categorieVehicle = new CategorieVehicle({libelle: libelle});
   

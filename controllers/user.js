@@ -85,6 +85,8 @@ exports.login = (req, res, next) => {
  * @param {Function} next - La fonction middleware à exécuter ensuite.
  */
  exports.findUsersWithRentals = (req, res, next) => {
+    if(req.auth.userRole !== 'prestataire'){ return res.status(400).json( { error: "You must be prestataire to get users with rentals!" })};
+
     Rental.distinct('renter')
         .then(renterIds => {
             if (renterIds.length === 0) {
