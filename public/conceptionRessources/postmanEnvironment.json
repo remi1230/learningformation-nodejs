@@ -3,14 +3,26 @@
 	"name": "LearningFormation",
 	"values": [
 		{
-			"key": "authToken",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZkM2ZiMWRiMTEwMzQ3OGM5MjBmNDgiLCJ1c2VyUm9sZSI6InByZXN0YXRhaXJlIiwiaWF0IjoxNzExMzYxMjkxLCJleHAiOjE3MTE0NDc2OTF9.2O_Dz-tm3KhK_12ZBVN-h-GpXfuLWyinHxchs9ca9LU",
+			"key": "authTokenPrestataire",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZkM2ZiMWRiMTEwMzQ3OGM5MjBmNDgiLCJ1c2VyUm9sZSI6InByZXN0YXRhaXJlIiwiaWF0IjoxNzExNTUzNDkzLCJleHAiOjE3MTE2Mzk4OTN9.lxPWuvbUDdwpxpgQc1jkjgfvNzVz3X_647qbNAXbV1c",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authTokenLocataire",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZjNWEyMmY2M2U3YTFiODRjMzI2YWYiLCJ1c2VyUm9sZSI6ImxvY2F0YWlyZSIsImlhdCI6MTcxMTU1MzU4OCwiZXhwIjoxNzExNjM5OTg4fQ.X-b4sti4oFnvBSHIvUfte_MAgW76MLoSJOgWI048lKU",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "vehicleId",
-			"value": "65fb0ab5cff05c379e704d74",
+			"value": "6604525fb33d9ce4ecd60243",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authorId",
+			"value": "65fc5a22f63e7a1b84c326af",
 			"type": "default",
 			"enabled": true
 		},
@@ -28,7 +40,7 @@
 		},
 		{
 			"key": "rentalId",
-			"value": "65fc104bfd9f2725eb0541c6",
+			"value": "66045475a5a424a847fd1e2f",
 			"type": "default",
 			"enabled": true
 		},
@@ -58,6 +70,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2024-03-26T13:19:24.073Z",
+	"_postman_exported_at": "2024-03-28T09:23:35.132Z",
 	"_postman_exported_using": "Postman/10.24.7"
 }

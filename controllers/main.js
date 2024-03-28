@@ -15,3 +15,4 @@ exports.vehiclesPage = (req, res, next) => { return res.status(200).sendFile(pat
 exports.rentalsPage  = (req, res, next) => { return res.status(200).sendFile(path.join(__dirname, '../views', 'rentals.html'));};
 exports.commentsPage = (req, res, next) => { return res.status(200).sendFile(path.join(__dirname, '../views', 'comments.html'));};
 exports.modelPage    = (req, res, next) => { return res.status(200).sendFile(path.join(__dirname, '../views', 'model.html'));};
+exports.testsPage    = (req, res, next) => { return res.status(200).sendFile(path.join(__dirname, '../views', 'tests.html'));};

@@ -12,7 +12,7 @@ paths:
     post:
       tags:
         - User
-      summary: "Inscription d'un nouvel utilisateur"
+      summary: "Registering a new user"
       requestBody:
         required: true
         content:
@@ -52,7 +52,7 @@ paths:
     post:
       tags:
         - User
-      summary: "Inscription d'un nouvel utilisateur"
+      summary: "User connexion"
       requestBody:
         required: true
         content:

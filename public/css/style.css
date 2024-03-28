@@ -71,3 +71,8 @@ h1{
     justify-content: center;
     margin-top: 25px;
 }
+#modelSubContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}

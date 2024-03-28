@@ -21,6 +21,40 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -29,7 +63,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -66,6 +100,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -74,7 +141,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -110,6 +177,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -118,7 +218,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -154,6 +254,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -162,7 +295,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -200,6 +333,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -208,7 +374,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -246,6 +412,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -254,7 +453,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -291,6 +490,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -299,7 +531,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -335,6 +567,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -343,7 +608,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -381,6 +646,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -389,7 +687,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -427,6 +725,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -435,7 +766,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -473,6 +804,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -481,7 +845,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -571,7 +935,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"{{userPrestataireEmail}}\",\n    \"password\": \"{{userMDP}}\"\n}",
+					"raw": "{\n\t\"email\": \"{{userLocataireEmail}}\",\n    \"password\": \"{{userMDP}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -608,6 +972,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -616,7 +1013,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -625,7 +1022,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"libelle\": \"Quad\"\n}",
+					"raw": "{\n\t\"libelle\": \"Pédalo\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -663,6 +1060,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -671,7 +1101,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -680,7 +1110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"vehicle\": \"65fab796c705e5d94900dbf0\",\n    \"author\": \"65fff6f373f6e3fd8015886e\",\n    \"comment\": \"Tout va bien\",\n    \"date\": \"2024-03-24\"\n}",
+					"raw": "{\n\t\"vehicle\": \"{{vehicleId}}\",\n    \"author\": \"{{authorId}}\",\n    \"comment\": \"Super auto !\",\n    \"date\": \"2024-03-27\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -718,6 +1148,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -726,7 +1189,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -735,7 +1198,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"libelle\": \"Renault 8\",\n  \"description\": \"Berling jaune de moyen standing\",\n  \"imageUrl\": \"http://1230.fr\",\n  \"category\": \"65f9c47fddc4ca20dced916e\",\n  \"priceDay\": 40\n}\n",
+					"raw": "{\n  \"libelle\": \"Renault 9\",\n  \"description\": \"Berling jaune qui déchire la route\",\n  \"imageUrl\": \"http://1230.fr\",\n  \"category\": \"65f9c47fddc4ca20dced916e\",\n  \"priceDay\": 28\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -773,6 +1236,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userLocataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenLocataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -781,7 +1277,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenLocataire}}",
 							"type": "string"
 						}
 					]
@@ -790,7 +1286,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"vehicle\": \"65fab796c705e5d94900dbf0\",\n    \"renter\": \"65fff6b873f6e3fd80158869\",\n    \"startDate\": \"2024-03-12\",\n    \"endDate\": \"2024-03-16\",\n    \"status\": \"pending\"\n}\n",
+					"raw": "{\n    \"vehicle\": \"6604525fb33d9ce4ecd60243\",\n    \"renter\": \"65fc5a22f63e7a1b84c326af\",\n    \"startDate\": \"2024-04-12\",\n    \"endDate\": \"2024-04-16\",\n    \"status\": \"pending\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -828,6 +1324,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token); // Supposons que la réponse contienne un token d'authentification\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -836,7 +1365,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]
@@ -845,7 +1374,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"libelle\": \"Renault Mégane\",\n  \"description\": \"Berling rouge de grand standings\",\n  \"imageUrl\": \"http://1230.fr\",\n  \"category\": \"65f9c47fddc4ca20dced916e\",\n  \"priceDay\": 12,\n  \"prestataire\": \"65fff6f373f6e3fd8015886e\"\n}",
+					"raw": "{\n  \"libelle\": \"Renault 9\",\n  \"description\": \"Berling jaune qui déchire la route\",\n  \"imageUrl\": \"http://1230.fr\",\n  \"category\": \"65f9c47fddc4ca20dced916e\",\n  \"priceDay\": 12,\n  \"prestataire\": \"65fd3fb1db1103478c920f48\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -884,6 +1413,39 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let emailPrestataire = pm.environment.get(\"userPrestataireEmail\");\r",
+							"let password         = pm.environment.get(\"userMDP\");\r",
+							"\r",
+							"var requestOptions = {\r",
+							"    method: 'POST',\r",
+							"    url: 'http://localhost:3000/login',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            email: emailPrestataire,\r",
+							"            password: password,\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(requestOptions, function (err, response) {\r",
+							"    if (!err) {\r",
+							"        var responseData = response.json();\r",
+							"        pm.environment.set(\"authTokenPrestataire\", responseData.token);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				}
 			],
 			"request": {
@@ -892,7 +1454,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authToken}}",
+							"value": "{{authTokenPrestataire}}",
 							"type": "string"
 						}
 					]

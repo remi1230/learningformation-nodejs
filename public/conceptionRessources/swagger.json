@@ -17,7 +17,7 @@
         "tags": [
           "User"
         ],
-        "summary": "Inscription d'un nouvel utilisateur",
+        "summary": "Registering a new user",
         "requestBody": {
           "content": {
             "application/json": {
@@ -67,7 +67,7 @@
         "tags": [
           "User"
         ],
-        "summary": "Inscription d'un nouvel utilisateur",
+        "summary": "User connexion",
         "requestBody": {
           "content": {
             "application/json": {

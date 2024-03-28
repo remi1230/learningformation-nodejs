@@ -53,7 +53,7 @@ exports.findAllVehicle = (req, res, next) => {
         .populate('category', 'libelle')
         .then(vehicles => {
         if (!vehicles) {
-            return res.status(404).json({ message: 'Aucun véhicule dans cette catégorie.' });
+            return res.status(404).json({ message: 'No vehicle in this category.' });
         }
         res.status(200).json(vehicles);
         })
